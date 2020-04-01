@@ -35,10 +35,9 @@ CSV.foreach('itemslist.csv') do |row|
     puts description
     puts card_type
     price = rand(1..40)
-    price += 0.99
 
     # we can create the cards now with these variables
-    Card.create(name: name, card_type: card_type, description: description, attack: attack.to_i, defence: defence.to_i, price: price)
+    Card.create(name: name, card_type: card_type, description: description, attack: attack.to_i, defence: defence.to_i, price: price
     counter += 1
   end
 end
