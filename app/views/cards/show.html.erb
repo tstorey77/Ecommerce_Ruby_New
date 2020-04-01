@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<head class="title">
+    <br>
+    <h1 class="title"> Card Information </h1>
+</head>
+<div class="columns">
+  <div class="column">
+    <div>
+      <%= render partial: 'card',
+               object: @card,
+               locals: {show_link: true} %>
+    </div>
+  </div>
+</div>

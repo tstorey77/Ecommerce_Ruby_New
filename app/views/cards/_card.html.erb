@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div class="column is-one-third">
+  <div class="card">
+    <div class="title">
+      <% if show_link %>
+        <%= link_to card.name, card %>
+      <% else %>
+        <%= card.name %>
+      <% end %>
+    </div>
+    <div class="card-content">
+      <p> Information: </p>
+      <p class="card-footer-item"> Card Type: <%= card.card_type %></p>
+      <p class="card-footer-item"> Attack: <%= card.attack %></p>
+      <p class="card-footer-item"> Defence: <%= card.defence %></p>
+      <p class="card-footer-item"> Price: <%= card.price %>.99</p>
+    </div>
+  </div>
+</div>

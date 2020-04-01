@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<body>
+  <div class="title">
+    <div class="column is-one-third">
+       <%= paginate @cards, window: 6%>
+    </div>
+  </div>
+  <div class="columns is-multiline">
+    <%= render partial: 'card',
+               collection: @cards,
+               locals: {show_link: true} %>
+  </div>
+</body>
