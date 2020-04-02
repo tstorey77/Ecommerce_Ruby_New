@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BuyMyNewCards</title>
+    <title>BuyMyCards</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,10 +12,13 @@
   </head>
 
   <body>
-    <h1 class="title"> Buy My Cards </h1>
-    <ul>
-      <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %></li>
-    </ul>
+    <div class="container">
+      <br>
+      <h1 class="title"> Buy My Cards </h1>
+      <ul>
+        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %></li>
+      </ul>
+    </div>
     <%= yield %>
   </body>
 </html>
