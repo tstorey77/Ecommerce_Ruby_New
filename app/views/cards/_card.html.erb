@@ -12,7 +12,9 @@
     <div class="card-content">
       <p> Information: </p>
       <p class="card-footer-item"> Card Type: <%= card.card_type %></p>
-      <p class="card-footer-item"> Description: <%= card.description %></p>
+      <% if is_show %>
+       <p class="card-footer-item"> Description: <%= card.description %></p>
+      <% end %>
       <p class="card-footer-item"> Attack: <%= card.attack %></p>
       <p class="card-footer-item"> Defence: <%= card.defence %></p>
       <p class="card-footer-item"> Price: <%= card.price %>.99</p>
