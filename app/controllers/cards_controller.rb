@@ -2,6 +2,7 @@
 
 class CardsController < ApplicationController
   before_action :set_card, only: %i[show edit update destroy]
+  before_action :initialize_session
 
   # GET /cards
   # GET /cards.json
@@ -14,6 +15,11 @@ class CardsController < ApplicationController
   # GET /cards/1.json
   def show
     @card = Card.find(params[:id])
+  end
+
+  def add_to_cart
+    session[:cart] << params[:id]
+    redirect_to root_path
   end
 
   def search
@@ -73,6 +79,10 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def initialize_session
+    session[:cart] ||= []
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_card

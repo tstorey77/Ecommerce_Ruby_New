@@ -18,7 +18,10 @@
       <% end %>
       <p class="card-footer-item"> Attack: <%= card.attack %></p>
       <p class="card-footer-item"> Defence: <%= card.defence %></p>
-      <p class="card-footer-item"> Price: <%= card.price %>.99</p>
+      <p class="card-footer-item"> Price: <%= number_to_currency card.price %></p>
+      <div>
+        <p> <%= link_to 'Add to cart', add_to_cart_path(card.id), method: :post %> </p>
+      </div>
     </div>
   </div>
 </div>
