@@ -68,7 +68,7 @@ hst = [0, 0, 0, 0.15, 0.15, 0, 0.15, 0, 0.13, 0.15, 0, 0, 0]
 counter = 0
 
 province_names.each do |name|
-  prov = Provinces.create(name: name, gst: gst[counter], pst: pst[counter], hst: hst[counter])
+  prov = Province.create(name: name, gst: gst[counter], pst: pst[counter], hst: hst[counter])
   puts prov.inspect
   counter += 1
 end
