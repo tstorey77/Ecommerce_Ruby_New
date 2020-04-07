@@ -25,6 +25,13 @@ class CardsController < ApplicationController
     redirect_to root_path
   end
 
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+
+    redirect_to root_path
+  end
+
   def search
     if params[:SearchWCat] == 'true'
       @card = Card.where('name LIKE ? AND card_type LIKE ?', "%#{params[:keyword]}%", "#{params[:Category]}%")

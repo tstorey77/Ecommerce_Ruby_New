@@ -21,9 +21,9 @@
       <p class="card-footer-item"> Price: <%= number_to_currency card.price %></p>
       <div>
         <% if @cart.include?(card) %>
-          <p> (IN CART) </p>
+          <p>  <%= button_to 'Remove from cart', remove_from_cart_path(card.id), method: :delete %></p>
         <% else %>
-          <p> <%= link_to 'Add to cart', add_to_cart_path(card.id), method: :post %> </p>
+          <p> <%= button_to 'Add to cart', add_to_cart_path(card.id), method: :post %> </p>
         <% end %>
       </div>
     </div>
