@@ -26,9 +26,16 @@
     <%= form.text_field :email %>
   </div>
 
+   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
   <div class="field">
     <%= form.label :provinces_id %>
-    <%= form.text_field :provinces_id %>
+    <div class="control">
+      <%= select_tag "province", options_from_collection_for_select(Province.all, "id", "name") %>
+    </div>
   </div>
 
   <div class="actions">

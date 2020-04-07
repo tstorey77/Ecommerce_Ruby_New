@@ -56,8 +56,24 @@ CSV.foreach('itemslist.csv') do |row|
     counter += 1
   end
 end
-
 puts counter
+
+# create provinces
+province_names = ['Alberta', 'British Columbia', 'Manitoba', 'New Bruswick',
+                  'Newfoundland and Labrador', 'Northwest Territories',
+                  'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+                  'Quebec', 'Saskatchewan', 'Yukon']
+
+gst = [0.05, 0.05, 0.05, 0, 0, 0.05, 0, 0.05, 0, 0, 0.05, 0.05, 0.05]
+pst = [0, 0.07, 0.07, 0, 0, 0, 0, 0, 0, 0, 0.09975, 0.06, 0]
+hst = [0, 0, 0, 0.15, 0.15, 0, 0.15, 0, 0.13, 0.15, 0, 0, 0]
+counter = 0
+
+province_names.each do |name|
+  prov = Province.create(name: name, gst: gst[counter], pst: pst[counter], hst: hst[counter])
+  puts prov.inspect
+  counter += 1
+end
 
 if Rails.env.development?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
