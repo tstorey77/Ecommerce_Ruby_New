@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'cards', to: 'cards#show', as: 'show'
   get 'about', to: 'pages#about', as: 'about'
   get 'categories', to: 'categories#index', as: 'catindex'
+  get 'search', to: 'cards#search', as: 'search'
 
   root to: 'cards#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

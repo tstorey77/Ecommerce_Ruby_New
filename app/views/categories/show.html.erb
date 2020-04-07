@@ -1,9 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<div class="column">
+  <div class="card">
+    <div class="card-content">
+      <p class="title">
+        <p class="title"> Name: <%= @category.name %></p>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="column">
+  <div class="card">
+    <div class="card-content">
+      <p class="title">
+        <p class="title"> Cards of type <%= @category.name %> </p>
+      </p>
+      <% @cards = Card.where(card_type: @category.name) %>
+      <% if @cards.empty? %>
+        <p> There are no cards of this type </p>
+      <% else %>
+        <% @cards.each do |card| %>
+          <p> <%= link_to card.name, card %> </p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

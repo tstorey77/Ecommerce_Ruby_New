@@ -16,6 +16,14 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
+  def search
+    if params[:SearchWCat] == 'true'
+      @card = Card.where('name LIKE ? AND card_type LIKE ?', "%#{params[:keyword]}%", "#{params[:Category]}%")
+    else
+      @card = Card.where('name LIKE ?', "%#{params[:keyword]}%")
+    end
+  end
+
   # GET /cards/new
   def new
     @card = Card.new
