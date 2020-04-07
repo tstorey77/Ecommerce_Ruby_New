@@ -20,6 +20,16 @@
         <li> <%= render partial: 'shared/search_form'%></li>
       </ul>
     </div>
+    <div>
+        <details>
+          <summary> Shopping Cart </summary>
+          <ul>
+            <% @cart.each do |card|%>
+              <li> <%= card.name %> </li>
+            <% end %>
+          </ul>
+        </details>
+    </div>
     <%= yield %>
   </body>
 </html>

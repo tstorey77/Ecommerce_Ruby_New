@@ -20,7 +20,11 @@
       <p class="card-footer-item"> Defence: <%= card.defence %></p>
       <p class="card-footer-item"> Price: <%= number_to_currency card.price %></p>
       <div>
-        <p> <%= link_to 'Add to cart', add_to_cart_path(card.id), method: :post %> </p>
+        <% if @cart.include?(card) %>
+          <p> (IN CART) </p>
+        <% else %>
+          <p> <%= link_to 'Add to cart', add_to_cart_path(card.id), method: :post %> </p>
+        <% end %>
       </div>
     </div>
   </div>
