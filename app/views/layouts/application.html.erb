@@ -15,6 +15,13 @@
     <div class="container">
       <br>
       <h1 class="title"> Buy My Cards </h1>
+      <% if session[:user_id] == nil %>
+        <p> You are not logged in </p>
+      <% else %>
+        <% username = User.find(session[:user_id]) %>
+        <% user = username.username %>
+        <p> logged in as, <%= user %> </p>
+      <% end %>
       <ul>
         <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %></li>
         <li> <%= render partial: 'shared/search_form'%></li>
