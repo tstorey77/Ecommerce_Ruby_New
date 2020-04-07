@@ -11,7 +11,8 @@
     </div>
     <div class="card-content">
       <p> Information: </p>
-      <p class="card-footer-item"> Card Type: <%= card.card_type %></p>
+      <% @cate = Category.where(name: card.card_type).first %>
+      <p class="card-footer-item"> Card Type: <%= link_to @cate.name, @cate %></p>
       <% if is_show %>
        <p class="card-footer-item"> Description: <%= card.description %></p>
       <% end %>
