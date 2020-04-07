@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :users, only: %i[new create]
   resources :categories
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'categories', to: 'categories#index', as: 'catindex'
   get 'search', to: 'cards#search', as: 'search'
+
+  get 'login', to: 'users#new'
+  post 'login', to: 'users#create'
+  get 'welcome', to: 'users#welcome'
 
   # routes for cart
   post 'cards/add_to_cart/:id', to: 'cards#add_to_cart', as: 'add_to_cart'

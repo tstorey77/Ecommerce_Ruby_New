@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'activeadmin'
 gem 'devise'
 
+gem 'bcrypt'
+
 gem 'kaminari'
 
 # Use Active Storage variant

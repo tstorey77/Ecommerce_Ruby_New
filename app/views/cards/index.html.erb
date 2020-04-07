@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
 <body>
+  <div>
+    <details>
+      <summary> Shopping Cart </summary>
+      <ul>
+        <% @cart.each do |card|%>
+          <li> <%= card.name %> <%= link_to 'Remove from cart', remove_from_cart_path(card.id), method: :delete %></li>
+        <% end %>
+      </ul>
+    </details>
+  </div>
   <div class="title">
     <div class="column is-one-third">
        <%= paginate @cards, window: 6%>
