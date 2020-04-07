@@ -3,8 +3,10 @@
     <div class="control">
       <%= text_field_tag(:keyword, nil, {class: "input", placeholder: "Search Cards"})%>
     </div>
-    <div>
-      <%= check_box_tag "SearchWCat", "true" %>
+    <div class="control">
+      <p>
+        Use Category <%= check_box_tag "SearchWCat", "true" %> :
+      </p>
     </div>
     <div class="control">
       <%= select_tag "Category", options_from_collection_for_select(Category.all, "name", "name") %>
