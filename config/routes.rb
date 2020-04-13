@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :order_details
+  resources :orders
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/login'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'categories', to: 'categories#index', as: 'catindex'
   get 'search', to: 'cards#search', as: 'search'
+  get 'orders', to: 'orders#index', as: 'ordersindex'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

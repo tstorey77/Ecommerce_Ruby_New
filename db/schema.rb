@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_221633) do
+ActiveRecord::Schema.define(version: 2020_04_13_003718) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,25 @@ ActiveRecord::Schema.define(version: 2020_04_07_221633) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "quantity", default: 1
+    t.integer "price"
+    t.integer "cards_id", null: false
+    t.integer "orders_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cards_id"], name: "index_order_details_on_cards_id"
+    t.index ["orders_id"], name: "index_order_details_on_orders_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total_cost"
+    t.integer "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_orders_on_users_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "description"
     t.string "phone"
@@ -86,5 +105,8 @@ ActiveRecord::Schema.define(version: 2020_04_07_221633) do
   end
 
   add_foreign_key "cards", "categories"
+  add_foreign_key "order_details", "cards", column: "cards_id"
+  add_foreign_key "order_details", "orders", column: "orders_id"
+  add_foreign_key "orders", "users", column: "users_id"
   add_foreign_key "users", "provinces"
 end
