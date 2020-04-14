@@ -4,7 +4,7 @@ class OrderDetailsController < InheritedResources::Base
   before_action :initialize_session
   before_action :load_cart
 
-  def remove_from_cart
+  def remove_from_details
     id = params[:id].to_i
     session[:cart].delete(id)
 

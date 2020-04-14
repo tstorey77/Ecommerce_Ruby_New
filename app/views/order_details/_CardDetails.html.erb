@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<div class="column is-one-third">
+  <div class="card">
+    <div class="title">
+      <% if show_link %>
+        <%= link_to @thisCard.name, @thisCard %>
+      <% else %>
+        <%= @thisCard.name %>
+      <% end %>
+    </div>
+    <div class="card-content">
+      <p> Information: </p>
+      <% @cate = Category.where(name: @thisCard.card_type).first %>
+      <p class="card-footer-item"> Card Type: <%= link_to @cate.name, @cate %></p>
+      <% if is_show %>
+       <p class="card-footer-item"> Description: <%= @thisCard.description %></p>
+      <% end %>
+      <p class="card-footer-item"> Attack: <%= @thisCard.attack %></p>
+      <p class="card-footer-item"> Defence: <%= @thisCard.defence %></p>
+      <p class="card-footer-item"> Price: <%= number_to_currency @thisCard.price %></p>
+      <div class="card-footer-item"> <p> Quantity:   <%= select_tag "quantity", options_for_select(1..3) %></p></div>
+      <br>
+      <div>
+        <p> <%= button_to 'Remove from cart', remove_from_details_path(@thisCard.id), method: :delete %></p>
+      </div>
+    </div>
+  </div>
+</div>
