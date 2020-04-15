@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :order_details
+  # resources :order_details
   resources :orders
   get 'sessions/new'
   get 'sessions/create'
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'categories', to: 'categories#index', as: 'catindex'
   get 'search', to: 'cards#search', as: 'search'
   get 'orders', to: 'orders#index', as: 'ordersindex'
+  get 'order_details', to: 'order_details#index', as: 'review_cart'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -28,6 +29,9 @@ Rails.application.routes.draw do
   # routes for cart
   post 'cards/add_to_cart/:id', to: 'cards#add_to_cart', as: 'add_to_cart'
   post 'orders/buy_now/', to: 'orders#index', as: 'buy_now'
+  post 'order_details/add_quantity/:id', to: 'order_details#add_quantity', as: 'add_quantity'
+  post 'order_details/minus_quantity/:id', to: 'order_details#minus_quantity', as: 'minus_quantity'
+
   delete 'cards/remove_from_cart/:id', to: 'cards#remove_from_cart', as: 'remove_from_cart'
   delete 'order_details/remove_from_details/:id', to: 'order_details#remove_from_details', as: 'remove_from_details'
 

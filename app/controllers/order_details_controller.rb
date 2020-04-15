@@ -8,7 +8,36 @@ class OrderDetailsController < InheritedResources::Base
     id = params[:id]
     session[:cart].delete(id)
 
-    redirect_to order_details_path
+    redirect_to review_cart_path
+  end
+
+  def add_quantity
+    session[:cart].each do |key, value|
+      puts value
+      new_value = value + 1
+      if key == params[:id]
+        new_hash = { key => new_value }
+        session[:cart].merge!(new_hash)
+      end
+    end
+    redirect_to review_cart_path
+  end
+
+  def minus_quantity
+    session[:cart].each do |key, value|
+      puts value
+      new_value = value - 1
+      if key == params[:id]
+        if new_value == 0
+          remove_from_details
+          return
+        else
+          new_hash = { key => new_value }
+          session[:cart].merge!(new_hash)
+        end
+      end
+    end
+    redirect_to review_cart_path
   end
 
   private
