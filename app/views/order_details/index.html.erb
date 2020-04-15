@@ -28,7 +28,11 @@
       </div>
       <div class="card">
         <h1 class="title">
-          <%= link_to 'Buy Now', orders_index_path %>
+          <% if session[:user_id].nil? %>
+            <p> You must log in or create an accout to purchase </p>
+          <% else %>
+            <%= link_to 'Buy Now', orders_index_path %>
+          <% end %>
         </h1>
       </div>
     <% end %>

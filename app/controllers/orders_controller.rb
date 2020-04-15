@@ -20,13 +20,20 @@ class OrdersController < InheritedResources::Base
     puts @hst
     puts @after_tax
     puts @user.inspect
-    @order = @user.order.create(total_price: @after_tax,
-                                gst: @gst,
-                                pst: @pst,
-                                hst: @hst,
-                                users_id: @user.id)
+    curr_user = User.find(@user.id)
+    @order = curr_user.orders.create(total_cost: @after_tax,
+                                     gst: @gst,
+                                     pst: @pst,
+                                     hst: @hst,
+                                     user_id: @user.id)
 
     puts @order.inspect
+    # works -- now create the order_details
+    session[:cart].each do |key, value|
+      card = Card.find(key)
+      @order_details = @order.order_details.create(quantity: value,
+                                                   price: card.price)
+    end
   end
 
   private

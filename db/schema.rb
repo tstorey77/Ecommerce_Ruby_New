@@ -70,13 +70,13 @@ ActiveRecord::Schema.define(version: 2020_04_15_030154) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "total_cost"
-    t.integer "users_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "pst"
     t.string "gst"
     t.string "hst"
-    t.index ["users_id"], name: "index_orders_on_users_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -110,6 +110,6 @@ ActiveRecord::Schema.define(version: 2020_04_15_030154) do
   add_foreign_key "cards", "categories"
   add_foreign_key "order_details", "cards", column: "cards_id"
   add_foreign_key "order_details", "orders", column: "orders_id"
-  add_foreign_key "orders", "users", column: "users_id"
+  add_foreign_key "orders", "users"
   add_foreign_key "users", "provinces"
 end
