@@ -60,16 +60,16 @@ ActiveRecord::Schema.define(version: 2020_04_15_030154) do
   create_table "order_details", force: :cascade do |t|
     t.integer "quantity", default: 1
     t.integer "price"
-    t.integer "cards_id", null: false
-    t.integer "orders_id", null: false
+    t.integer "card_id", null: false
+    t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cards_id"], name: "index_order_details_on_cards_id"
-    t.index ["orders_id"], name: "index_order_details_on_orders_id"
+    t.index ["card_id"], name: "index_order_details_on_card_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "total_cost"
+    t.string "total_cost"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_030154) do
   end
 
   add_foreign_key "cards", "categories"
-  add_foreign_key "order_details", "cards", column: "cards_id"
-  add_foreign_key "order_details", "orders", column: "orders_id"
+  add_foreign_key "order_details", "cards"
+  add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "users", "provinces"
 end

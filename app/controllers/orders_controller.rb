@@ -21,7 +21,7 @@ class OrdersController < InheritedResources::Base
     puts @after_tax
     puts @user.inspect
     curr_user = User.find(@user.id)
-    @order = curr_user.orders.create(total_cost: @after_tax,
+    @order = curr_user.orders.create(total_cost: @after_tax.to_s,
                                      gst: @gst,
                                      pst: @pst,
                                      hst: @hst,
@@ -31,9 +31,12 @@ class OrdersController < InheritedResources::Base
     # works -- now create the order_details
     session[:cart].each do |key, value|
       card = Card.find(key)
-      @order_details = @order.order_details.create(quantity: value,
-                                                   price: card.price)
+      @order_details = OrderDetail.create(quantity: value,
+                                          price: card.price,
+                                          card: card,
+                                          order: @order)
     end
+    # now we should redirect to payment page
   end
 
   private
