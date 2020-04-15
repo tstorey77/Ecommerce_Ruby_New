@@ -20,13 +20,15 @@ class CardsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
+    quantity = 1
+    item = { id => quantity }
+    session[:cart].merge!(item) unless session[:cart].include?(item)
 
     redirect_to root_path
   end
 
   def remove_from_cart
-    id = params[:id].to_i
+    id = params[:id]
     session[:cart].delete(id)
 
     redirect_to root_path
@@ -91,11 +93,12 @@ class CardsController < ApplicationController
   private
 
   def initialize_session
-    session[:cart] ||= []
+    session[:cart] ||= {}
   end
 
   def load_cart
-    @cart = Card.find(session[:cart])
+    items = session[:cart]
+    @cart = Card.find(items.keys)
   end
 
   # Use callbacks to share common setup or constraints between actions.

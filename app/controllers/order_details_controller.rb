@@ -5,7 +5,7 @@ class OrderDetailsController < InheritedResources::Base
   before_action :load_cart
 
   def remove_from_details
-    id = params[:id].to_i
+    id = params[:id]
     session[:cart].delete(id)
 
     redirect_to order_details_path
@@ -22,6 +22,7 @@ class OrderDetailsController < InheritedResources::Base
   end
 
   def load_cart
-    @cart = Card.find(session[:cart])
+    items = session[:cart]
+    @cart = Card.find(items.keys)
   end
 end

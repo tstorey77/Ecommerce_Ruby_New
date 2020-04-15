@@ -10,15 +10,29 @@
   </thead>
 
   <tbody>
-    <div class="columns is-multiline">
-        <% @cart.each do |card|%>
-          <% @thisCard = Card.find(card.id)%>
-          <%= render partial: 'CardDetails',
-                     object: @thisCard,
-                     locals: {show_link: true,
+    <% if @cart.empty? %>
+      <div>
+        <h1> No Cards in Cart </h1>
+      </div>
+    <% else %>
+      <% total = 0 %>
+        <div class="columns is-multiline">
+          <% @cart.each do |card|%>
+
+            <% total += card.price %>
+            <% @thisCard = Card.find(card.id)%>
+            <%= render partial: 'CardDetails',
+                      object: @thisCard,
+                      locals: {show_link: true,
                               is_show: false} %>
-        <% end %>
-    </div>
+          <% end %>
+      </div>
+      <div class="card">
+        <h1 class="title">
+          <%= button_to 'Buy Now', buy_now_path, method: :post %>
+        </h1>
+      </div>
+    <% end %>
   </tbody>
 </table>
 <br>

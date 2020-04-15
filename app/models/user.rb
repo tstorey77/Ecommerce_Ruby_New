@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   belongs_to :province
-  has_many :carts
+  has_many :order_details
 
   has_secure_password
 end
