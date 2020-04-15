@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'categories', to: 'categories#index', as: 'catindex'
   get 'search', to: 'cards#search', as: 'search'
-  get 'orders', to: 'orders#index', as: 'ordersindex'
+  get 'orders', to: 'orders#index', as: 'orders_index'
   get 'order_details', to: 'order_details#index', as: 'review_cart'
 
   get 'login', to: 'sessions#new'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   # routes for cart
   post 'cards/add_to_cart/:id', to: 'cards#add_to_cart', as: 'add_to_cart'
-  post 'orders/buy_now/', to: 'orders#index', as: 'buy_now'
+  post 'orders/confirm/', to: 'orders#confirm', as: 'confirm_order'
   post 'order_details/add_quantity/:id', to: 'order_details#add_quantity', as: 'add_quantity'
   post 'order_details/minus_quantity/:id', to: 'order_details#minus_quantity', as: 'minus_quantity'
 

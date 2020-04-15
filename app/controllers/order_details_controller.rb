@@ -13,7 +13,6 @@ class OrderDetailsController < InheritedResources::Base
 
   def add_quantity
     session[:cart].each do |key, value|
-      puts value
       new_value = value + 1
       if key == params[:id]
         new_hash = { key => new_value }
@@ -25,7 +24,6 @@ class OrderDetailsController < InheritedResources::Base
 
   def minus_quantity
     session[:cart].each do |key, value|
-      puts value
       new_value = value - 1
       if key == params[:id]
         if new_value == 0
