@@ -27,7 +27,7 @@
       <% end %>
       <div class="card-footer-item"> <p> Quantity: <%= quantity %></p></div>
       <%= button_to '+', add_quantity_path(@thisCard.id), method: :post %>
-      <%= button_to '-', minus_quantity_path(@thisCard.id), method: :post%>
+      <%= button_to '-', minus_quantity_path(@thisCard.id), method: :post %>
       <br>
       <div>
         <p> <%= button_to 'Remove from cart', remove_from_details_path(@thisCard.id), method: :delete %></p>

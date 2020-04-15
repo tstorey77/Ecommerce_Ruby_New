@@ -11,7 +11,7 @@
 
   </head>
 
-  <body>
+  <body data-no-turbolink="true">
     <div class="container">
       <br>
       <h1 class="title"> Buy My Cards </h1>
@@ -23,7 +23,7 @@
         <p> logged in as, <%= user %> </p>
       <% end %>
       <ul>
-        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %> | <%= link_to "Review Cart", review_cart_path %></li>
+        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %> | <%= link_to "Review Cart", review_cart_path, data: { turbolinks: false } %></li>
         <li> <%= render partial: 'shared/search_form'%></li>
       </ul>
       <div class="container">
