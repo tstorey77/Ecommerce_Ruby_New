@@ -9,7 +9,7 @@ class CardsController < ApplicationController
   # GET /cards.json
   def index
     # @cards = Card.all
-    @cards = Card.order(:id).page(params[:page])
+    @cards = Card.order(:name).page(params[:page])
   end
 
   # GET /cards/1

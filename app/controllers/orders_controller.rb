@@ -8,7 +8,7 @@ class OrdersController < InheritedResources::Base
   def index; end
 
   def show
-    # @order = Order.find(params[:id])
+    @order = Order.all
   end
 
   def confirm

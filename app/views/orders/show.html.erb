@@ -1,3 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="title">Customers Orders </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.each do |order| %>
+      <tr>
+        <td><%= order.id %> </td>
+        <td><%= order.total_cost %></td>
+        <td><%= order.gst %></td>
+        <td><%= order.pst %></td>
+        <td><%= order.hst %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 

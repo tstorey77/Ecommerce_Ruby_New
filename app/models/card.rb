@@ -6,8 +6,6 @@ class Card < ApplicationRecord
   belongs_to :category
   has_many :order_details
 
-  validates :category, presence: true
-
   validates :name, presence: true,
                    uniqueness: true
 
