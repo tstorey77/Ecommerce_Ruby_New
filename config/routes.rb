@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'categories', to: 'categories#index', as: 'catindex'
   get 'search', to: 'cards#search', as: 'search'
   get 'orders', to: 'orders#index', as: 'orders_index'
+  get 'orders/show', to: 'orders#show', as: 'orders_show'
   get 'order_details', to: 'order_details#index', as: 'review_cart'
 
   get 'login', to: 'sessions#new'

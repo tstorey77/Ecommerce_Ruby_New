@@ -23,7 +23,7 @@
         <p> logged in as, <%= user %> </p>
       <% end %>
       <ul>
-        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %> | <%= link_to "Review Cart", review_cart_path, data: { turbolinks: false } %></li>
+        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %> | <%= link_to "Review Cart", review_cart_path, data: { turbolinks: false } %> | <%= link_to 'Past Orders', orders_show_path %> </li>
         <li> <%= render partial: 'shared/search_form'%></li>
       </ul>
       <div class="container">

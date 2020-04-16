@@ -9,16 +9,18 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @order.each do |order| %>
-      <tr>
-        <td><%= order.id %> </td>
-        <td><%= order.total_cost %></td>
-        <td><%= order.gst %></td>
-        <td><%= order.pst %></td>
-        <td><%= order.hst %></td>
-      </tr>
+  <% if session[:user_id].nil? %>
+    <h1> You need to log in or sign up to see you past orders </h1>
+    <%= button_to "Login", '/login', method: :get%>
+    <%= button_to "Sign Up", '/users/new', method: :get%>
+  <% else %>
+    <% @user = User.find(session[:user_id]) %>
+    <% @orders = Order.where(user_id: @user.id) %>
+    <tbody>
+      <% @orders.each do |order| %>
+        <%= render partial: 'order',
+                   object: order %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
