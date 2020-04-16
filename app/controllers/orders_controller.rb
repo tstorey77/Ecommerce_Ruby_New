@@ -36,23 +36,23 @@ class OrdersController < InheritedResources::Base
                                           card: card,
                                           order: @order)
     end
-    # now we should redirect to payment page
+    # now we should redirect to payment page -- ** do above after stripe confirmation
   end
 
   private
 
   def load_data
-    @user = current_user
+    @user = current_user # get user
     province = Province.find(@user.province_id)
     @total_price = 0
-    session[:cart].each do |key, value|
+    session[:cart].each do |key, value| # in shopping cart
       cards = Card.find(key.to_i)
       @total_price += (cards.price * value)
     end
-    @gst = @total_price * province.gst
+    @gst = @total_price * province.gst # taxes
     @pst = @total_price * province.pst
     @hst = @total_price * province.hst
-    @after_tax = @total_price + @gst + @pst + @hst
+    @after_tax = @total_price + @gst + @pst + @hst # after_tax is total_price in Orders table
   end
 
   def order_params
