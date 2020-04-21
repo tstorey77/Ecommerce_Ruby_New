@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :cards
 
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+  end
+
   get 'cards', to: 'cards#show', as: 'show'
   get 'about', to: 'pages#about', as: 'about'
   get 'categories', to: 'categories#index', as: 'catindex'

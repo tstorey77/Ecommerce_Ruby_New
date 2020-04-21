@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'activeadmin'
 gem 'devise'
 
+gem 'stripe'
+
 gem 'bcrypt'
 
 gem 'kaminari'
