@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="title">Order Details</h1>
-<table>
-  <thead>
+<div>
+  <div>
     <div class="columns is-multiline">
 
     </div>
-  </thead>
+  </div>
 
-  <tbody>
+  <div>
     <% if @cart.empty? %>
       <div>
         <h1> No Cards in Cart </h1>
@@ -17,7 +15,6 @@
       <% total = 0 %>
         <div class="columns is-multiline">
           <% @cart.each do |card|%>
-
             <% total += card.price %>
             <% @thisCard = Card.find(card.id)%>
             <%= render partial: 'CardDetails',
@@ -27,17 +24,17 @@
           <% end %>
       </div>
       <div class="columns is-centered">
-        <h1 class="title">
+        <h1 class="button">
           <% if session[:user_id].nil? %>
-            <p> You must log in or create an accout to purchase </p>
+            You must log in or create an accout to purchase
           <% else %>
-            <p class="button"><%= link_to 'Buy Now', orders_index_path %> </p>
+            <%= link_to 'Buy Now', orders_index_path %>
           <% end %>
         </h1>
       </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 <br>
 
 
