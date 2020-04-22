@@ -80,9 +80,42 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    # create the order table and the order details
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+
+    # on success we want to create order and order details
+    total_price = 0
+    user = User.find(session[:user_id])
+    province = Province.find(user.province_id)
+
+    # total price before tax
+    session[:cart].each do |key, value|
+      cards = Card.find(key.to_i)
+      total_price += (cards.price * value)
+    end
+
+    # taxes
+    gst = total_price * province.gst
+    pst = total_price * province.pst
+    hst = total_price * province.hst
+    after_tax = total_price + gst + pst + hst
+
+    # create order
+    order = user.orders.create(total_cost: after_tax.to_s,
+                               gst: gst,
+                               pst: pst,
+                               hst: hst,
+                               user_id: user.id,
+                               stripeId: @payment_intent.id)
+
+    # create order details
+    session[:cart].each do |key, value|
+      card = Card.find(key.to_i)
+      order_details = OrderDetail.create(quantity: value,
+                                         price: card.price,
+                                         card: card,
+                                         order: order)
+    end
   end
 
   def cancel; end
