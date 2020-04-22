@@ -38,11 +38,11 @@
 
         <div class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="<%= root_path %>">
               Home
             </a>
 
-            <a class="navbar-item" href="/about">
+            <a class="navbar-item" href="<%= about_path %>">
               About
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -50,7 +50,7 @@
                 Categories
               </a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" href="/categories">
+                <a class="navbar-item" href="<%= catindex_path%>">
                   All
                 </a>
                 <% @categories = Category.all %>
@@ -64,7 +64,7 @@
             <a data-no-turbolink="false" class="navbar-item" href="<%= review_cart_path%>">
               Review Cart
             </a>
-            <a class="navbar-item" href="/orders/show">
+            <a class="navbar-item" href="<%= orders_show_path%>">
               Past Orders
             </a>
             <div class="navbar-item">
@@ -75,17 +75,14 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="navbar-item">
-                  <strong><%= button_to "Sign Up", '/users/new', method: :get%> </strong>
-                </a>
-                <a class="navbar-item">
-                  <strong> <%= button_to "Login", '/login', method: :get%></strong>
-                </a>
+                  <%= button_to "Sign Up", '/users/new', method: :get%>
+                  <%= button_to "Login", '/login', method: :get%>
               </div>
             </div>
           </div>
         </div>
       </nav>
     <%= yield %>
+    </div>
   </body>
 </html>

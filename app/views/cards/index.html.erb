@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-<body>
-  <div>
-    <details>
-      <summary> Shopping Cart </summary>
+<div>
+  <details>
+    <summary> Shopping Cart </summary>
       <ul>
         <% @cart.each do |card|%>
           <li> <%= card.name %> <%= link_to 'Remove from cart', remove_from_cart_path(card.id), method: :delete %></li>
@@ -21,5 +19,5 @@
                locals: {show_link: true,
                         is_show: false} %>
   </div>
+</div>
 
-</body>
