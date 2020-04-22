@@ -4,7 +4,7 @@
   <div class="card">
     <div class="card-content">
       <p class="title">
-        <p class="title"> Name: <%= @category.name %></p>
+        <p class="title"><%= @category.name %></p>
       </p>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <p> There are no cards of this type </p>
       <% else %>
         <% @cards.each do |card| %>
-          <p> <%= link_to card.name, card %> </p>
+          <p class="list-item"> <%= link_to card.name, card %> </p>
         <% end %>
       <% end %>
     </div>

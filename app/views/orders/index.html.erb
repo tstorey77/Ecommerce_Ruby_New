@@ -5,14 +5,14 @@
 <table>
   <thead>
     <tr>
-      <th>Cards</th>
-      <th>Quantity</th>
-      <th>Price Each</th>
+      <th class="subtitle">Cards</th>
+      <th class="subtitle">Quantity</th>
+      <th class="subtitle">Price Each</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table is-bordered">
     <% session[:cart].each do |key, value|%>
       <% @card = Card.find(key)%>
       <tr>
@@ -24,12 +24,12 @@
   </tbody>
 </table>
 <div>
-  <ul>
-    <li> Before Tax: <%= number_to_currency(@total_price) %></li>
-    <li> GST: <%= number_to_currency(@gst) %></li>
-    <li> PST: <%= number_to_currency(@pst) %></li>
-    <li> HST: <%= number_to_currency(@hst) %></li>
-    <li> After Tax: <%= number_to_currency(@after_tax) %> </li>
+  <ul class="list">
+    <li class="list-item"> <strong>Before Tax:  </strong><%= number_to_currency(@total_price) %></li>
+    <li class="list-item"> <strong> GST: </strong> <%= number_to_currency(@gst) %></li>
+    <li class="list-item"> <strong> PST:</strong> <%= number_to_currency(@pst) %></li>
+    <li class="list-item"> <strong> HST: </strong><%= number_to_currency(@hst) %></li>
+    <li class="list-item"> <strong> After Tax: </strong> <%= number_to_currency(@after_tax) %> </li>
   </ul>
 <br>
 </div>

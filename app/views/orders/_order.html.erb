@@ -1,19 +1,18 @@
 <tr>
-  <th> <%= order.id %> </th>
+  <th class="list-item"> <%= order.id %> </th>
 </tr>
 <% @details = OrderDetail.where(order_id: order.id)%>
 <% @details.each do |detail| %>
   <% @card = Card.find(detail.card_id) %>
   <tr>
-    <th> Card Name: </th>
-    <td> <%= @card.name %> </td>
-    <th> Quantity: </th>
+    <td class="list-item"> <%= @card.name %> </td>
+    <th class="subtitle"> Quantity: </th>
     <td> <%= detail.quantity %> </td>
   </tr>
 <% end %>
-<tr>
-  <th> gst: <%= order.gst %> </th>
-  <th> pst: <%= order.pst %> </th>
-  <th> hst: <%= order.hst %> </th>
-  <th> Subtotal: <%= order.total_cost %></th>
+<tr class="list">
+  <th class="list-item"> gst: <%= number_to_currency(order.gst) %> </th>
+  <th class="list-item"> pst: <%= number_to_currency(order.pst) %> </th>
+  <th class="list-item"> hst: <%= number_to_currency(order.hst) %> </th>
+  <th class="list-item"> Subtotal: <%= number_to_currency(order.total_cost) %></th>
 </tr>

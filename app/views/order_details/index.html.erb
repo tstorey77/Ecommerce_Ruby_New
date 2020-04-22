@@ -26,12 +26,12 @@
                               is_show: false} %>
           <% end %>
       </div>
-      <div class="card">
+      <div class="columns is-centered">
         <h1 class="title">
           <% if session[:user_id].nil? %>
             <p> You must log in or create an accout to purchase </p>
           <% else %>
-            <%= link_to 'Buy Now', orders_index_path %>
+            <p class="button"><%= link_to 'Buy Now', orders_index_path %> </p>
           <% end %>
         </h1>
       </div>

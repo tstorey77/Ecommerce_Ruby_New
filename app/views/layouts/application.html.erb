@@ -16,21 +16,76 @@
       <br>
       <h1 class="title"> Buy My Cards </h1>
       <% if session[:user_id] == nil %>
-        <p> You are not logged in </p>
+        <p class="container"> You are not logged in </p>
       <% else %>
         <% username = User.find(session[:user_id]) %>
         <% user = username.username %>
-        <p> logged in as, <%= user %> </p>
+        <p class="container"> logged in as, <%= user %> </p>
       <% end %>
-      <ul>
-        <li> <%= link_to 'Home', root_path %> |  <%= link_to 'About', about_path %> |  <%= link_to 'Categories', catindex_path %> | <%= link_to "Review Cart", review_cart_path, data: { turbolinks: false } %> | <%= link_to 'Past Orders', orders_show_path %> </li>
-        <li> <%= render partial: 'shared/search_form'%></li>
-      </ul>
-      <div class="container">
-        <%= button_to "Login", '/login', method: :get%>
-        <%= button_to "Sign Up", '/users/new', method: :get%>
-      </div>
-    </div>
+
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="<%link_to root_path%>">
+
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              Home
+            </a>
+
+            <a class="navbar-item" href="/about">
+              About
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="/categories">
+                Categories
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="/categories">
+                  All
+                </a>
+                <% @categories = Category.all %>
+                <% @categories.each do | category | %>
+                  <a class="navbar-item"  href="/categories/<%=category.id%>">
+                    <%= category.name %>
+                  </a>
+                <% end %>
+              </div>
+            </div>
+            <a data-no-turbolink="false" class="navbar-item" href="<%= review_cart_path%>">
+              Review Cart
+            </a>
+            <a class="navbar-item" href="/orders/show">
+              Past Orders
+            </a>
+            <div class="navbar-item">
+              <%= render partial: 'shared/search_form'%>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="navbar-item">
+                  <strong><%= button_to "Sign Up", '/users/new', method: :get%> </strong>
+                </a>
+                <a class="navbar-item">
+                  <strong> <%= button_to "Login", '/login', method: :get%></strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     <%= yield %>
   </body>
 </html>
